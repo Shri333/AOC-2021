@@ -25,31 +25,29 @@ func puzzle1(data []byte) int {
 }
 
 func puzzle2(data []byte) int {
-	start, count := 0, 0
-	nums := make([]int, 2000)
-	for i, b := range data {
-		if b == '\n' {
-			numstr := string(data[start:i])
-			nums[count], _ = strconv.Atoi(numstr)
-			start = i + 1
-			count++
-		}
-	}
+	start, windowEnd, increases := 0, 0, 0
+	window := make([]int, 3)
 
-	start, prev, sum, count := 0, math.MaxInt32, 0, 0
-	for i, n := range nums {
-		sum += n
-		if i >= 2 {
-			if sum > prev {
-				count++
+	for index, element := range data {
+		if element == '\n' {
+			numstr := string(data[start:index])
+			current, _ := strconv.Atoi(numstr)
+			if windowEnd >= 3 {
+				oldSum := window[0] + window[1] + window[2]
+				newSum := window[1] + window[2] + current
+				if newSum > oldSum {
+					increases++
+				}
+				window[0], window[1], window[2] = window[1], window[2], current
+			} else {
+				window[windowEnd] = current
+				windowEnd++
 			}
-			prev = sum
-			sum -= nums[start]
-			start++
+			start = index + 1
 		}
 	}
 
-	return count
+	return increases
 }
 
 func main() {
@@ -58,5 +56,6 @@ func main() {
 		log.Fatal(err)
 	}
 
+	fmt.Println(puzzle1(data))
 	fmt.Println(puzzle2(data))
 }
