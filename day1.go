@@ -10,6 +10,7 @@ import (
 
 func puzzle1(data []byte) int {
 	prev, start, increases := math.MaxInt32, 0, 0
+
 	for index, element := range data {
 		if element == '\n' {
 			numstr := string(data[start:index])
@@ -21,6 +22,7 @@ func puzzle1(data []byte) int {
 			start = index + 1
 		}
 	}
+
 	return increases
 }
 
