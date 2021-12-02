@@ -1,6 +1,6 @@
 package day1
 
-func Puzzle2(slice []int) int {
+func puzzle2(slice []int) int {
 	start, sum, answer := 0, 0, 0
 	for index, element := range slice {
 		sum += element
