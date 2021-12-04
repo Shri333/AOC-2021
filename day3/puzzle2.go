@@ -12,7 +12,6 @@ func getRating(data []string, mostCommon bool) int {
 
 	var rating int64
 	set := make(map[string]bool)
-
 	for _, element := range data {
 		set[element] = true
 	}

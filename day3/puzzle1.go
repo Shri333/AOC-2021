@@ -7,8 +7,8 @@ import (
 func puzzle1(data []string) int {
 	size := len(data[0])
 	matrix := freqMatrix(data, size)
-
 	gamma, epsilon := 0, 0
+
 	for i := 0; i < size; i++ {
 		if matrix[i][0] > matrix[i][1] {
 			epsilon += int(math.Pow(2, float64(size-i-1)))

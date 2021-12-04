@@ -15,7 +15,6 @@ func RunPuzzles() {
 
 	scanner := bufio.NewScanner(file)
 	data := make([]string, 0)
-	
 	for scanner.Scan() {
 		data = append(data, scanner.Text())
 	}
@@ -23,4 +22,5 @@ func RunPuzzles() {
 	fmt.Println("Day 3:")
 	fmt.Println("Puzzle 1:", puzzle1(data))
 	fmt.Println("Puzzle 2:", puzzle2(data))
+	fmt.Println()
 }
