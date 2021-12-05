@@ -20,7 +20,7 @@ func RunPuzzles() {
 	}
 
 	fmt.Println("Day 1:")
-	fmt.Println("Puzzle 1: ", puzzle1(slice))
-	fmt.Println("Puzzle 2: ", puzzle2(slice))
+	fmt.Println("Puzzle 1:", puzzle1(slice))
+	fmt.Println("Puzzle 2:", puzzle2(slice))
 	fmt.Println()
 }
