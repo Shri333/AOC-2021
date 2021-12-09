@@ -29,7 +29,7 @@ func bounds(positions []int) (int, int) {
 	return lowest, highest
 }
 
-func min(a int, b int) int {
+func min(a, b int) int {
 	if a < b {
 		return a
 	} else {
@@ -37,7 +37,7 @@ func min(a int, b int) int {
 	}
 }
 
-func max(a int, b int) int {
+func max(a, b int) int {
 	if a > b {
 		return a
 	} else {

@@ -8,6 +8,7 @@ import (
 	"github.com/Shri333/AOC-2021/day5"
 	"github.com/Shri333/AOC-2021/day6"
 	"github.com/Shri333/AOC-2021/day7"
+	"github.com/Shri333/AOC-2021/day8"
 )
 
 func main() {
@@ -18,4 +19,5 @@ func main() {
 	day5.RunPuzzles()
 	day6.RunPuzzles()
 	day7.RunPuzzles()
+	day8.RunPuzzles()
 }
