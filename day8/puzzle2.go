@@ -6,7 +6,6 @@ import (
 
 func puzzle2(patternsList, digitsList [][]string) int {
 	sum := 0
-
 	for i := 0; i < len(patternsList); i++ {
 		patterns, digits := patternsList[i], digitsList[i]
 		patternMap := processPatterns(patterns)
