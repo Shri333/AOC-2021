@@ -10,7 +10,7 @@ import (
 )
 
 func RunPuzzles() {
-	file, err := os.Open("day11/input.txt")
+	file, err := os.Open("day11/test.txt")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -27,8 +27,16 @@ func RunPuzzles() {
 		grid = append(grid, row)
 	}
 
+	copy := make([][]int, len(grid))
+	for i := range grid {
+		copy[i] = make([]int, len(grid[0]))
+		for j, value := range grid[i] {
+			copy[i][j] = value
+		}
+	}
+
 	fmt.Println("Day 11:")
 	fmt.Println("Puzzle 1:", puzzle1(grid))
-	fmt.Println("Puzzle 2:", puzzle2(grid))
+	fmt.Println("Puzzle 2:", puzzle2(copy))
 	fmt.Println()
 }
