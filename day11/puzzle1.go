@@ -20,9 +20,9 @@ func increaseEnergyLevel(grid [][]int) {
 
 func flashOctupuses(grid [][]int) int {
 	visited := makeVisitedGrid(grid)
-
 	flashes := 0
 	flashed := true
+
 	for flashed {
 		flashed = false
 		for i := range grid {
