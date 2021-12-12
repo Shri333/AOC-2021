@@ -10,7 +10,7 @@ import (
 )
 
 func RunPuzzles() {
-	file, err := os.Open("day11/test.txt")
+	file, err := os.Open("day11/input.txt")
 	if err != nil {
 		log.Fatal(err)
 	}
