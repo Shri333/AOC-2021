@@ -17,10 +17,10 @@ func dfs2(graph map[string][]string, current string, visited map[string]int, vis
 
 		if isLowerCase(node) {
 			visited[node]++
-			if visitable && visited[node] == 2 {
-				paths += dfs2(graph, node, visited, false)
-			} else if visited[node] < 2 {
+			if visited[node] == 1 {
 				paths += dfs2(graph, node, visited, visitable)
+			} else if visitable && visited[node] == 2 {
+				paths += dfs2(graph, node, visited, false)
 			}
 			visited[node]--
 		} else {
