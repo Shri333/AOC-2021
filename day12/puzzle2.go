@@ -1,57 +1,32 @@
 package day12
 
-type twice struct {
-	node string
-	freq int
-}
-
 func puzzle2(graph map[string][]string) int {
-	paths, unique := &set{make(map[string]bool)}, &set{make(map[string]bool)}
-
-	for node := range graph {
-		if node != "start" && isLowerCase(node) {
-			unique.add(node)
-		}
-	}
-
-	for node := range unique.data {
-		dfs2(graph, "start", &set{make(map[string]bool)}, &twice{node, 0}, paths, "")
-	}
-
-	return len(paths.data)
+	return dfs2(graph, "start", make(map[string]int), true)
 }
 
-func dfs2(graph map[string][]string, current string, visited *set, t *twice, paths *set, path string) {
-	path += current
-
+func dfs2(graph map[string][]string, current string, visited map[string]int, visitable bool) int {
 	if current == "end" {
-		paths.add(path)
-		return
+		return 1
 	}
 
-	if isLowerCase(current) {
-		if current == t.node {
-			t.freq++
-		} else {
-			visited.add(current)
-		}
-	}
-
+	paths := 0
 	for _, node := range graph[current] {
-		if node == t.node && t.freq == 2 {
+		if node == "start" {
 			continue
 		}
 
-		if !visited.contains(node) {
-			dfs2(graph, node, visited, t, paths, path)
+		if isLowerCase(node) {
+			visited[node]++
+			if visitable && visited[node] == 2 {
+				paths += dfs2(graph, node, visited, false)
+			} else if visited[node] < 2 {
+				paths += dfs2(graph, node, visited, visitable)
+			}
+			visited[node]--
+		} else {
+			paths += dfs2(graph, node, visited, visitable)
 		}
 	}
 
-	if isLowerCase(current) {
-		if current == t.node {
-			t.freq--
-		} else {
-			visited.remove(current)
-		}
-	}
+	return paths
 }
