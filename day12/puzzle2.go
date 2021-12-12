@@ -15,6 +15,9 @@ func dfs2(graph map[string][]string, current string, visited map[string]int, vis
 			continue
 		}
 
+		// credit goes to
+		// https://www.reddit.com/r/adventofcode/comments/rehj2r/comment/hob35i3/?utm_source=share&utm_medium=web2x&context=3
+		// for helping me greatly simplify backtracking code
 		if isLowerCase(node) {
 			visited[node]++
 			if visited[node] == 1 {
