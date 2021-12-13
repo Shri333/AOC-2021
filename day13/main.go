@@ -46,6 +46,9 @@ func RunPuzzles() {
 	height++
 	width++
 
+	// credit goes to
+	// https://old.reddit.com/r/adventofcode/comments/rfcfpt/yaxis_fold_not_in_middle_of_paper/
+	// for helping me fix the bug
 	if height%2 == 0 {
 		height++
 	}
