@@ -52,7 +52,6 @@ func RunPuzzles() {
 	if height%2 == 0 {
 		height++
 	}
-
 	if width%2 == 0 {
 		width++
 	}
