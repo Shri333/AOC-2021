@@ -1,38 +1,35 @@
 package day13
 
-func puzzle1(paper [][]int, folds []*fold, height, width int) int {
-	foldPaper(paper, folds[0], &height, &width)
-	return countDots(paper, height, width)
+import "fmt"
+
+func puzzle1(paper [][]int, folds []*fold, Y, X int) int {
+	fmt.Println(Y, X)
+	foldPaper(paper, folds[0], &Y, &X)
+	return countDots(paper, Y, X)
 }
 
-func foldPaper(paper [][]int, f *fold, height, width *int) {
+func foldPaper(paper [][]int, f *fold, Y, X *int) {
 	if f.direction == 'x' {
-		for i := 0; i < *height; i++ {
-			for j := 0; j < f.line; j++ {
-				paper[i][j] |= paper[i][*width-j-1]
+		for i := 0; i <= *Y; i++ {
+			for j := 2*f.line - *X; j < f.line; j++ {
+				paper[i][j] |= paper[i][2*f.line-j]
 			}
 		}
-		*width = f.line
-		if *width%2 == 0 {
-			*width++
-		}
+		*X = f.line - 1
 	} else {
-		for i := 0; i < f.line; i++ {
-			for j := 0; j < *width; j++ {
-				paper[i][j] |= paper[*height-i-1][j]
+		for i := 2*f.line - *Y; i < f.line; i++ {
+			for j := 0; j <= *X; j++ {
+				paper[i][j] |= paper[2*f.line-i][j]
 			}
 		}
-		*height = f.line
-		if *height%2 == 0 {
-			*height++
-		}
+		*Y = f.line - 1
 	}
 }
 
-func countDots(paper [][]int, height, width int) int {
+func countDots(paper [][]int, Y, X int) int {
 	count := 0
-	for i := 0; i < height; i++ {
-		for j := 0; j < width; j++ {
+	for i := 0; i <= Y; i++ {
+		for j := 0; j <= X; j++ {
 			if paper[i][j] == 1 {
 				count++
 			}

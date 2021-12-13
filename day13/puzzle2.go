@@ -4,19 +4,19 @@ import (
 	"strings"
 )
 
-func puzzle2(paper [][]int, folds []*fold, height, width int) string {
+func puzzle2(paper [][]int, folds []*fold, Y, X int) string {
 	for _, f := range folds {
-		foldPaper(paper, f, &height, &width)
+		foldPaper(paper, f, &Y, &X)
 	}
 
-	return paperString(paper, height, width)
+	return paperString(paper, Y, X)
 }
 
-func paperString(paper [][]int, height, width int) string {
+func paperString(paper [][]int, Y, X int) string {
 	sb := &strings.Builder{}
-	for i := 0; i < height; i++ {
+	for i := 0; i <= Y; i++ {
 		sb.WriteRune('\n')
-		for j := 0; j < width; j++ {
+		for j := 0; j <= X; j++ {
 			if paper[i][j] == 1 {
 				sb.WriteRune('#')
 			} else {

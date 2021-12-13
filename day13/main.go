@@ -20,7 +20,7 @@ func RunPuzzles() {
 	for index := range paper {
 		paper[index] = make([]int, 2000)
 	}
-	height, width := 0, 0
+	Y, X := 0, 0
 	folds := []*fold{}
 
 	file, err := os.Open("day13/input.txt")
@@ -39,21 +39,8 @@ func RunPuzzles() {
 		y, _ := strconv.Atoi(location[1])
 		paper[y][x] = 1
 
-		height = int(math.Max(float64(height), float64(y)))
-		width = int(math.Max(float64(width), float64(x)))
-	}
-
-	height++
-	width++
-
-	// credit goes to
-	// https://old.reddit.com/r/adventofcode/comments/rfcfpt/yaxis_fold_not_in_middle_of_paper/
-	// for helping me fix the bug
-	if height%2 == 0 {
-		height++
-	}
-	if width%2 == 0 {
-		width++
+		Y = int(math.Max(float64(Y), float64(y)))
+		X = int(math.Max(float64(X), float64(x)))
 	}
 
 	for scanner.Scan() {
@@ -64,7 +51,7 @@ func RunPuzzles() {
 	}
 
 	fmt.Println("Day 13:")
-	fmt.Println("Puzzle 1:", puzzle1(paper, folds, height, width))
-	fmt.Println("Puzzle 2:", puzzle2(paper, folds, height, width))
+	fmt.Println("Puzzle 1:", puzzle1(paper, folds, Y, X))
+	fmt.Println("Puzzle 2:", puzzle2(paper, folds, Y, X))
 	fmt.Println()
 }
