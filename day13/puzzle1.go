@@ -13,6 +13,9 @@ func foldPaper(paper [][]int, f *fold, height, width *int) {
 			}
 		}
 		*width = f.line
+		if *width%2 == 0 {
+			*width++
+		}
 	} else {
 		for i := 0; i < f.line; i++ {
 			for j := 0; j < *width; j++ {
@@ -20,6 +23,9 @@ func foldPaper(paper [][]int, f *fold, height, width *int) {
 			}
 		}
 		*height = f.line
+		if *height%2 == 0 {
+			*height++
+		}
 	}
 }
 
