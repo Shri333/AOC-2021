@@ -20,7 +20,7 @@ func puzzle2(lines []string) int {
 	}
 
 	for _, line := range lines {
-		s := &stack{[]rune{}}
+		s := &runeStack{}
 		corrupted := false
 		for _, char := range line {
 			if _, ok := charMap[char]; ok {

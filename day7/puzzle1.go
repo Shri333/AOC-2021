@@ -1,8 +1,6 @@
 package day7
 
-import (
-	"math"
-)
+import "math"
 
 func puzzle1(positions []int) int {
 	total := math.MaxInt

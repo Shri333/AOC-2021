@@ -1,8 +1,6 @@
 package day13
 
-import (
-	"strings"
-)
+import "strings"
 
 func puzzle2(paper [][]int, folds []*fold, Y, X int) string {
 	for _, f := range folds {

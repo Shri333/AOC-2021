@@ -1,8 +1,6 @@
 package day3
 
-import (
-	"math"
-)
+import "math"
 
 func puzzle1(data []string) int {
 	size := len(data[0])

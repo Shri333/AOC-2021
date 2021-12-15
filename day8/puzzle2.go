@@ -1,8 +1,6 @@
 package day8
 
-import (
-	"sort"
-)
+import "sort"
 
 func puzzle2(patternsList, digitsList [][]string) int {
 	sum := 0

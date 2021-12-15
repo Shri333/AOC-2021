@@ -1,21 +1,19 @@
 package day10
 
-type stack struct {
-	data []rune
+type runeStack []rune
+
+func (s *runeStack) push(element rune) {
+	*s = append(*s, element)
 }
 
-func (s *stack) push(element rune) {
-	s.data = append(s.data, element)
-}
-
-func (s *stack) pop() rune {
-	top := s.data[len(s.data)-1]
-	s.data = s.data[:len(s.data)-1]
+func (s *runeStack) pop() rune {
+	top := (*s)[len(*s)-1]
+	*s = (*s)[:len(*s)-1]
 	return top
 }
 
-func (s *stack) empty() bool {
-	return len(s.data) == 0
+func (s *runeStack) empty() bool {
+	return len(*s) == 0
 }
 
 func puzzle1(lines []string) int {
@@ -34,7 +32,7 @@ func puzzle1(lines []string) int {
 	}
 
 	for _, line := range lines {
-		s := &stack{[]rune{}}
+		s := &runeStack{}
 		for _, char := range line {
 			if _, ok := charMap[char]; ok {
 				s.push(char)
