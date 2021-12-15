@@ -27,16 +27,14 @@ func RunPuzzles() {
 		grid = append(grid, row)
 	}
 
-	copy := make([][]int, len(grid))
-	for i := range grid {
-		copy[i] = make([]int, len(grid[0]))
-		for j, value := range grid[i] {
-			copy[i][j] = value
-		}
+	grid_ := make([][]int, len(grid))
+	for index, row := range grid {
+		grid_[index] = make([]int, len(row))
+		copy(grid_[index], row)
 	}
 
 	fmt.Println("Day 11:")
 	fmt.Println("Puzzle 1:", puzzle1(grid))
-	fmt.Println("Puzzle 2:", puzzle2(copy))
+	fmt.Println("Puzzle 2:", puzzle2(grid_))
 	fmt.Println()
 }
