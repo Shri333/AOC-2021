@@ -7,7 +7,7 @@ import (
 )
 
 func RunPuzzles() {
-	data, err := os.ReadFile("input.txt")
+	data, err := os.ReadFile("day16/input.txt")
 	if err != nil {
 		log.Fatal(err)
 	}
