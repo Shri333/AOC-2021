@@ -56,6 +56,7 @@ func puzzle1(grid [][]int) int {
 	return dijkstra(grid)
 }
 
+// credit goes to: https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
 func dijkstra(grid [][]int) int {
 	n := len(grid)
 	visited := make([][]bool, len(grid))
