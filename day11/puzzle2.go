@@ -1,16 +1,13 @@
 package day11
 
 func puzzle2(grid [][]int) int {
-	step := 1
-	for {
+	for step := 1; ; step++ {
 		increaseEnergyLevel(grid)
 		flashes := flashOctupuses(grid)
 		if flashes == len(grid)*len(grid[0]) {
-			break
+			return step
 		}
 
 		step++
 	}
-
-	return step
 }

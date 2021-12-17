@@ -14,8 +14,7 @@ func puzzle2(x1, x2, y1, y2 int) int {
 }
 
 func shootProbe(vx, vy, x1, x2, y1, y2 int) bool {
-	x, y, dx, dy := 0, 0, vx, vy
-	for {
+	for x, y, dx, dy := 0, 0, vx, vy; ; {
 		x, y = x+dx, y+dy
 		if dx > 0 {
 			dx--
