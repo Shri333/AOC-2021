@@ -4,8 +4,8 @@ import "math"
 
 func puzzle1(x1, x2, y1, y2 int) int {
 	max := 0
-	for v := 0; v < 1000; v++ {
-		y, dy := 0, v
+	for vy := 0; vy < 1000; vy++ {
+		y, dy := 0, vy
 		best := 0
 		for y > y2 {
 			y += dy
