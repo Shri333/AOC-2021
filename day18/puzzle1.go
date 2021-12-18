@@ -3,7 +3,6 @@ package day18
 import (
 	"math"
 	"strconv"
-	"strings"
 )
 
 type pair struct {
@@ -16,21 +15,6 @@ type pair struct {
 type node struct {
 	p     *pair
 	depth int
-}
-
-func (p *pair) String() string {
-	sb := &strings.Builder{}
-	if p.left == nil {
-		sb.WriteString(strconv.Itoa(p.val))
-	} else {
-		sb.WriteRune('[')
-		sb.WriteString(p.left.String())
-		sb.WriteRune(',')
-		sb.WriteString(p.right.String())
-		sb.WriteRune(']')
-	}
-
-	return sb.String()
 }
 
 func (p *pair) reduce() {
