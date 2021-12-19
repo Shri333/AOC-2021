@@ -19,6 +19,7 @@ func RunPuzzles() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	defer file.Close()
 
 	scanner := bufio.NewScanner(file)
 	segments := [][]point{}

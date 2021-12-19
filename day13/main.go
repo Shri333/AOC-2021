@@ -16,6 +16,13 @@ type fold struct {
 }
 
 func RunPuzzles() {
+	file, err := os.Open("day13/input.txt")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer file.Close()
+
+	scanner := bufio.NewScanner(file)
 	paper := make([][]int, 2000)
 	for index := range paper {
 		paper[index] = make([]int, 2000)
@@ -23,12 +30,6 @@ func RunPuzzles() {
 	Y, X := 0, 0
 	folds := []*fold{}
 
-	file, err := os.Open("day13/input.txt")
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		if scanner.Text() == "" {
 			break

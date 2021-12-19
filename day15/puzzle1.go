@@ -12,18 +12,18 @@ type cell struct {
 	index int
 }
 
-func (c *cell) neighbors(visited [][]bool) []int {
-	n, adjacent := len(visited), []int{}
-	if c.i > 0 && !visited[c.i-1][c.j] {
+func (c *cell) neighbors(cells []*cell) []int {
+	n, adjacent := int(math.Sqrt(float64(len(cells)))), []int{}
+	if c.i > 0 && cells[n*(c.i-1)+c.j] != nil {
 		adjacent = append(adjacent, n*(c.i-1)+c.j)
 	}
-	if c.i < n-1 && !visited[c.i+1][c.j] {
+	if c.i < n-1 && cells[n*(c.i+1)+c.j] != nil {
 		adjacent = append(adjacent, n*(c.i+1)+c.j)
 	}
-	if c.j > 0 && !visited[c.i][c.j-1] {
+	if c.j > 0 && cells[n*c.i+(c.j-1)] != nil {
 		adjacent = append(adjacent, n*c.i+(c.j-1))
 	}
-	if c.j < n-1 && !visited[c.i][c.j+1] {
+	if c.j < n-1 && cells[n*c.i+(c.j+1)] != nil {
 		adjacent = append(adjacent, n*c.i+(c.j+1))
 	}
 
@@ -59,13 +59,9 @@ func puzzle1(grid [][]int) int {
 // credit goes to: https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
 func dijkstra(grid [][]int) int {
 	n := len(grid)
-	visited := make([][]bool, len(grid))
-	for i := range visited {
-		visited[i] = make([]bool, len(grid))
-	}
-
 	pq := &gridPQ{}
 	dists := make([][]int, n)
+	cells := make([]*cell, n*n)
 	for i := range dists {
 		dists[i] = make([]int, n)
 		for j := range dists[i] {
@@ -74,29 +70,25 @@ func dijkstra(grid [][]int) int {
 			} else {
 				dists[i][j] = math.MaxInt16
 			}
-			heap.Push(pq, &cell{i, j, dists[i][j], pq.Len()})
+			c := &cell{i, j, dists[i][j], pq.Len()}
+			heap.Push(pq, c)
+			cells[n*i+j] = c
 		}
 	}
 
 	for pq.Len() > 0 {
 		current := heap.Pop(pq).(*cell)
-		for _, neighbor := range current.neighbors(visited) {
+		for _, neighbor := range current.neighbors(cells) {
 			i, j := neighbor/n, neighbor%n
 			tentative := dists[current.i][current.j] + grid[i][j]
 			if tentative < dists[i][j] {
 				dists[i][j] = tentative
-				var update *cell
-				for _, c := range *pq {
-					if c.i == i && c.j == j {
-						update = c
-						break
-					}
-				}
+				update := cells[n*i+j]
 				update.dist = tentative
 				heap.Fix(pq, update.index)
 			}
-			visited[i][j] = true
 		}
+		cells[n*current.i+current.j] = nil
 	}
 
 	return dists[n-1][n-1]

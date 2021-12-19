@@ -13,6 +13,7 @@ func RunPuzzles() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	defer file.Close()
 
 	patternsList, digitsList := [][]string{}, [][]string{}
 	scanner := bufio.NewScanner(file)

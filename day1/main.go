@@ -3,12 +3,18 @@ package day1
 import (
 	"bufio"
 	"fmt"
+	"log"
 	"os"
 	"strconv"
 )
 
 func RunPuzzles() {
-	file, _ := os.Open("day1/input.txt")
+	file, err := os.Open("day1/input.txt")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer file.Close()
+
 	scanner := bufio.NewScanner(file)
 	slice := make([]int, 2000)
 	current := 0
