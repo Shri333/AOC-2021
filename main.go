@@ -13,6 +13,7 @@ import (
 	"github.com/Shri333/AOC-2021/day18"
 	"github.com/Shri333/AOC-2021/day19"
 	"github.com/Shri333/AOC-2021/day2"
+	"github.com/Shri333/AOC-2021/day20"
 	"github.com/Shri333/AOC-2021/day3"
 	"github.com/Shri333/AOC-2021/day4"
 	"github.com/Shri333/AOC-2021/day5"
@@ -42,4 +43,5 @@ func main() {
 	day17.RunPuzzles()
 	day18.RunPuzzles()
 	day19.RunPuzzles()
+	day20.RunPuzzles()
 }

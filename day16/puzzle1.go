@@ -107,9 +107,9 @@ func parseOperator(bits []int, i *int, version, typeID int) *operator {
 
 func decimal(bits []int) int {
 	number := 0
-	for i := 0; i < len(bits); i++ {
-		exponent := len(bits) - i - 1
-		number += bits[i] * int(math.Pow(2, float64(exponent)))
+	for i, bit := range bits {
+		exponent := float64(len(bits) - i - 1)
+		number += bit * int(math.Pow(2, exponent))
 	}
 
 	return number
