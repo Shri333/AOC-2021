@@ -4,9 +4,8 @@ import "math"
 
 func puzzle2(input string) int {
 	bits := getBits(input)
-	temp := 0
-	i := &temp
-	return eval(parsePacket(bits, i))
+	root := parsePacket(bits, new(int))
+	return eval(root)
 }
 
 func eval(p packet) int {

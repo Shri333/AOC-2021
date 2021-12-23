@@ -61,13 +61,10 @@ func (p *pair) magnitude() int {
 }
 
 func puzzle1(numbers []string) int {
-	temp := 0
-	ptr := &temp
-	root := parse(numbers[0], ptr)
+	root := parse(numbers[0], new(int))
 
 	for i := 1; i < len(numbers); i++ {
-		*ptr = 0
-		left, right := root, parse(numbers[i], ptr)
+		left, right := root, parse(numbers[i], new(int))
 		root = &pair{-1, left, right, nil}
 		left.parent, right.parent = root, root
 		root.reduce()

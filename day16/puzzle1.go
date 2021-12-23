@@ -36,9 +36,8 @@ type operator struct {
 
 func puzzle1(input string) int {
 	bits := getBits(input)
-	temp := 0
-	ptr := &temp
-	return versionSum(parsePacket(bits, ptr))
+	root := parsePacket(bits, new(int))
+	return versionSum(root)
 }
 
 func getBits(input string) []int {
