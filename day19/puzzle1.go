@@ -11,29 +11,33 @@ func locations(reports [][]coordinate) (map[coordinate]bool, []coordinate) {
 		beacons[coord] = true
 	}
 
-	processed := [][]coordinate{reports[0]}
+	initial := make(map[coordinate]bool)
+	for _, c := range reports[0] {
+		initial[c] = true
+	}
+	processed := []map[coordinate]bool{initial}
 	unprocessed := make([][]coordinate, len(reports)-1)
 	copy(unprocessed, reports[1:])
 	for len(unprocessed) > 0 {
 		for i := len(unprocessed) - 1; i >= 0; i-- {
 			found, report1 := false, unprocessed[i]
 			for _, report0 := range processed {
-				for _, c1 := range report0 {
+				for c1 := range report0 {
 					for _, report := range orientations(report1) {
 						for _, c2 := range report {
 							scanner := coordinate{c1.x - c2.x, c1.y - c2.y, c1.z - c2.z}
-							matches := []coordinate{}
+							matches := 0
 							for _, c := range report {
 								coord := coordinate{scanner.x + c.x, scanner.y + c.y, scanner.z + c.z}
-								if _, ok := beacons[coord]; ok {
-									matches = append(matches, coord)
+								if _, ok := report0[coord]; ok {
+									matches++
 								}
 							}
-							if len(matches) >= 12 {
-								actual := []coordinate{}
+							if matches >= 12 {
+								actual := make(map[coordinate]bool)
 								for _, c := range report {
 									coord := coordinate{scanner.x + c.x, scanner.y + c.y, scanner.z + c.z}
-									actual = append(actual, coord)
+									actual[coord] = true
 									beacons[coord] = true
 								}
 								scanners = append(scanners, scanner)
