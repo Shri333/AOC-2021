@@ -1,9 +1,6 @@
 package day24
 
-import (
-	"fmt"
-	"strconv"
-)
+import "strconv"
 
 func puzzle1(instructions []instruction) int {
 	largest := 99999999999999
@@ -15,7 +12,6 @@ func puzzle1(instructions []instruction) int {
 			largest--
 			digits = getDigits(largest)
 		}
-		fmt.Println(largest)
 	}
 
 	return largest
